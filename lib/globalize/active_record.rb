@@ -68,7 +68,7 @@ module Globalize
         has_many_options.delete(:dependent) if options[:not_dependent]
         has_many :translations, has_many_options
 
-        named_scope :with_translations, lambda { |locale|
+        scope :with_translations, lambda { |locale|
           conditions = required_attributes.map do |attribute|
             "#{quoted_translation_table_name}.#{attribute} IS NOT NULL"
           end
