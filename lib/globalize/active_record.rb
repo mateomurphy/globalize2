@@ -177,6 +177,10 @@ module Globalize
     end
 
     module InstanceMethods
+      # Fix for ruby 1.9.2 with ActiveRecord 3.0.0, which raises a undefined method 'no_ary' on destroy
+      def to_ary
+      end
+
       def globalize
         @globalize ||= Adapter.new self
       end
