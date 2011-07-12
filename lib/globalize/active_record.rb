@@ -76,6 +76,8 @@ module Globalize
           { :include => :translations, :conditions => [conditions.join(' AND '), locale] }
         }
 
+        has_one :current_translation, :class_name => translation_class.name, :conditions => 'locale = \'#{I18n.locale.to_s}\''
+
         attr_names.each { |attr_name| translated_attr_accessor(attr_name) }
 
         I18n.available_locales.each{ |l| attr_names.each { |a| translated_attr_locale_accessor(a,l) } }
